@@ -1,5 +1,10 @@
+import pagination from './pagination.js';
+
 const uuid = '7dcf70ef-1a02-406f-883c-e4682a9c0fa8';
 const apiPath = 'https://course-ec-api.hexschool.io';
+
+// Vue Component
+Vue.component('pagination', pagination);
 
 new Vue({
     el: "#product",
@@ -7,13 +12,16 @@ new Vue({
         productData: [],
         tempProduct: {},
         token: '',
+        paginationData: {}
     },
     methods: {
-        getProducts() {
-            const getProductsApiPath = `${apiPath}/api/${uuid}/admin/ec/products`
+        getProducts(page = 1) {
+            const getProductsApiPath = `${apiPath}/api/${uuid}/admin/ec/products?page=${page}`
             axios.get(getProductsApiPath).then(res => {
-                console.log(res);
                 this.productData = res.data.data;
+                this.paginationData = res.data.meta.pagination;
+                console.log(this.productData);
+                console.log(this.paginationData);
             }).catch(err => {
                 console.log(err);
             });

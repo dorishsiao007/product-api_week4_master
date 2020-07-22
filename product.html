@@ -72,6 +72,11 @@
                 </table>
             </div>
         </div>
+        <div class="row">
+            <div class="col-sm">
+                <pagination :pagination="paginationData" @pagination-update="getProducts"></pagination>
+            </div>
+        </div>
 
         <!-- Update Product Modal -->
         <div class=" modal fade" id="UpdaateProductModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -202,8 +207,8 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <!-- Vue.js -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.9/dist/vue.js"></script>
-    <!-- Logic Javascript-->
-    <script src="js/product.js"></script>
+    <!-- Product Javascript-->
+    <script type="module" src="js/product.js"></script>
 </body>
 
 </html>

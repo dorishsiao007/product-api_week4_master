@@ -1,9 +1,6 @@
 import pagination from './pagination.js';
 import modal from './modal.js';
 
-const uuid = '7dcf70ef-1a02-406f-883c-e4682a9c0fa8';
-const apiPath = 'https://course-ec-api.hexschool.io';
-
 // Vue Component
 Vue.component('pagination', pagination);
 Vue.component('modal', modal);
@@ -14,11 +11,15 @@ new Vue({
         productData: [],
         tempProduct: {imageUrl: []},
         token: '',
-        paginationData: {}
+        paginationData: {},
+        api: {
+            uuid: '7dcf70ef-1a02-406f-883c-e4682a9c0fa8',
+            path: 'https://course-ec-api.hexschool.io'
+        }
     },
     methods: {
         getProducts(page = 1) {
-            const getProductsApiPath = `${apiPath}/api/${uuid}/admin/ec/products?page=${page}`
+            const getProductsApiPath = `${this.api.path}/api/${this.api.uuid}/admin/ec/products?page=${page}`
             axios.get(getProductsApiPath).then(res => {
                 this.productData = res.data.data;
                 this.paginationData = res.data.meta.pagination;
@@ -67,7 +68,7 @@ new Vue({
                 case "update": {
                     // Get Single Product Data
                     const id = data.id;
-                    const getProductDetailApiPath = `${apiPath}/api/${uuid}/admin/ec/product/${id}`;
+                    const getProductDetailApiPath = `${this.api.path}/api/${this.api.uuid}/admin/ec/product/${id}`;
                     axios.get(getProductDetailApiPath).then( res => {
                         console.log(res);
                         this.tempProduct = JSON.parse(JSON.stringify(res.data.data));

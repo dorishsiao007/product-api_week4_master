@@ -110,8 +110,13 @@ export default {
     },
     methods: {
         updateProduct(){
-            
+            // update product data from api
+            //PATCH api/{uuid}/admin/ec/product/{id}
+            console.log(tempProduct);
+            const updateProductApiPath = `${api.path}/api/${api.uuid}/admin/ec/product/${tempProduct.id}`
+            //axios.patch('updateProduct', )
+            console.log(updateProductApiPath);
         }
     },
-    props: ['tempProduct']
+    props: ['tempProduct', 'api']
 };

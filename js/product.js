@@ -1,10 +1,12 @@
 import pagination from './pagination.js';
+import modal from './modal.js';
 
 const uuid = '7dcf70ef-1a02-406f-883c-e4682a9c0fa8';
 const apiPath = 'https://course-ec-api.hexschool.io';
 
 // Vue Component
 Vue.component('pagination', pagination);
+Vue.component('modal', modal);
 
 new Vue({
     el: "#product",

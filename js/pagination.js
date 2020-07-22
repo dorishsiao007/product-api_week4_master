@@ -19,7 +19,8 @@ export default {
     props: ['pagination'],
     methods: {
         paginationUpdate(pageNum) {
-            this.$emit('paginationUpdate', pageNum);
+            console.log(pageNum);
+            this.$emit('pagination-update', pageNum);
         }
     }
 };

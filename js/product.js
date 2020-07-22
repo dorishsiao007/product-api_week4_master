@@ -12,7 +12,7 @@ new Vue({
     el: "#product",
     data: {
         productData: [],
-        tempProduct: {},
+        tempProduct: {imageUrl: []},
         token: '',
         paginationData: {}
     },
@@ -22,8 +22,8 @@ new Vue({
             axios.get(getProductsApiPath).then(res => {
                 this.productData = res.data.data;
                 this.paginationData = res.data.meta.pagination;
-                console.log(this.productData);
-                console.log(this.paginationData);
+                // console.log(this.productData);
+                // console.log(this.paginationData);
             }).catch(err => {
                 console.log(err);
             });
@@ -65,7 +65,15 @@ new Vue({
                     break;
                 }
                 case "update": {
-                    this.tempProduct = JSON.parse(JSON.stringify(data));
+                    // Get Single Product Data
+                    const id = data.id;
+                    const getProductDetailApiPath = `${apiPath}/api/${uuid}/admin/ec/product/${id}`;
+                    axios.get(getProductDetailApiPath).then( res => {
+                        console.log(res);
+                        this.tempProduct = JSON.parse(JSON.stringify(res.data.data));
+                    }).catch( err => {
+                        console.log(err)
+                    })
                     break;
                 }
                 case "delete": {

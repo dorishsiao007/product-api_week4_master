@@ -19,12 +19,12 @@ export default {
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="addon-wrapping">圖片網址</span>
                                         </div>
-                                        <input type="text" v-model="tempProduct.imgUrl" class="form-control" placeholder="請輸入圖片網址"
+                                        <input type="text" v-model="tempProduct.imageUrl[0]" class="form-control" placeholder="請輸入圖片網址"
                                             aria-label="PictureUrl" aria-describedby="addon-wrapping">
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <img :src="tempProduct.imgUrl"
+                                    <img :src="tempProduct.imageUrl[0]"
                                         class="img-fluid" alt="Responsive image">
                                 </div>
                             </div>
@@ -101,6 +101,17 @@ export default {
             </div>
         </div>
     </div>
+
     `,
-    props: ["tempProduct"]
+    data(){
+        return {
+            //tempProduct: {}
+        }
+    },
+    methods: {
+        updateProduct(){
+            
+        }
+    },
+    props: ['tempProduct']
 };

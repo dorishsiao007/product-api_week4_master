@@ -111,11 +111,10 @@ export default {
     methods: {
         updateProduct(){
             // update product data from api
-            //PATCH api/{uuid}/admin/ec/product/{id}
-            console.log(tempProduct);
-            const updateProductApiPath = `${api.path}/api/${api.uuid}/admin/ec/product/${tempProduct.id}`
-            //axios.patch('updateProduct', )
-            console.log(updateProductApiPath);
+            const updateProductApiPath = `${this.api.path}/api/${this.api.uuid}/admin/ec/product/${this.tempProduct.id}`
+            axios.patch(updateProductApiPath, this.tempProduct).then( res => {
+                this.$emit('update');
+            })
         }
     },
     props: ['tempProduct', 'api']

@@ -70,7 +70,6 @@ new Vue({
                     const id = data.id;
                     const getProductDetailApiPath = `${this.api.path}/api/${this.api.uuid}/admin/ec/product/${id}`;
                     axios.get(getProductDetailApiPath).then( res => {
-                        console.log(res);
                         this.tempProduct = JSON.parse(JSON.stringify(res.data.data));
                     }).catch( err => {
                         console.log(err)

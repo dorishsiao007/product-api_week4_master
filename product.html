@@ -79,7 +79,7 @@
         </div> 
 
         <!-- Modal -->
-        <modal :temp-product="tempProduct" :api="api"></modal>
+        <modal :temp-product="tempProduct" :api="api" @update="getProducts"></modal>
 
         <!-- Delete Product Modal -->
         <div class="modal fade" id="DeleteProductModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

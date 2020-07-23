@@ -103,18 +103,32 @@ export default {
     </div>
 
     `,
-    data(){
-        return {
-            //tempProduct: {}
-        }
-    },
     methods: {
         updateProduct(){
-            // update product data from api
-            const updateProductApiPath = `${this.api.path}/api/${this.api.uuid}/admin/ec/product/${this.tempProduct.id}`
-            axios.patch(updateProductApiPath, this.tempProduct).then( res => {
-                this.$emit('update');
-            })
+            if(this.tempProduct.id){
+                // update product data
+                const updateProductApiPath = `${this.api.path}/api/${this.api.uuid}/admin/ec/product/${this.tempProduct.id}`
+                axios.patch(updateProductApiPath, this.tempProduct).then(res => {
+                    this.$emit('update');
+                }).catch(err => {
+                    console.log(err);
+                })
+            }
+            else {
+                // add new product data
+                const id = new Date().getTime();
+                const addProductApiPath = `${this.api.path}/api/${this.api.uuid}/admin/ec/product`
+                
+                this.tempProduct.id = id;
+                
+                axios.post(addProductApiPath, this.tempProduct).then(res => {
+                    console.log(this.tempProduct);
+                    this.$emit('update');
+                    this.tempProduct = {imageUrl: ['']};
+                }).catch(err => {
+                    console.log(err);
+                })
+            }
         }
     },
     props: ['tempProduct', 'api']

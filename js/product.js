@@ -1,15 +1,17 @@
 import pagination from './pagination.js';
 import modal from './modal.js';
+import deleteModal from './delete_modal.js';
 
 // Vue Component
 Vue.component('pagination', pagination);
 Vue.component('modal', modal);
+Vue.component('delete', deleteModal);
 
 new Vue({
     el: "#product",
     data: {
         productData: [],
-        tempProduct: {imageUrl: []},
+        tempProduct: {imageUrl: ['']},
         token: '',
         paginationData: {},
         api: {
@@ -23,46 +25,15 @@ new Vue({
             axios.get(getProductsApiPath).then(res => {
                 this.productData = res.data.data;
                 this.paginationData = res.data.meta.pagination;
-                // console.log(this.productData);
-                // console.log(this.paginationData);
             }).catch(err => {
                 console.log(err);
             });
-        },
-        updateProduct: function () {
-            if(this.tempProduct.id){
-                // Update Product Data
-                const id = this.tempProduct.id;
-                this.productData.forEach((item, index) => {
-                    if (item.id === id) {
-                        this.productData[index] = this.tempProduct;
-                    }
-                });
-                this.tempProduct = {};
-            }
-            else{
-                // Add Product Data
-                const id = new Date().getTime();
-                this.tempProduct.id = id;
-                this.productData.push(this.tempProduct);
-                this.tempProduct = {};
-            }
-        },
-
-        deleteProduct: function () {
-            const id = this.tempProduct.id;
-            this.productData.forEach((item, index) => {
-                if (item.id === id) {
-                    this.productData.splice(index, 1);
-                }
-            });
-            this.tempProduct = {};
         },
 
         openModal: function (action, data) {
             switch (action) {
                 case "add": {
-                    this.tempProduct = {};
+                    this.tempProduct = {imageUrl: ['']};
                     break;
                 }
                 case "update": {
@@ -86,7 +57,7 @@ new Vue({
             }
         }
     },
-    created(){
+    mounted(){
         // get token
         this.token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, "$1");
         // axios add authorization

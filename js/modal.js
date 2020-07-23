@@ -124,7 +124,6 @@ export default {
                 axios.post(addProductApiPath, this.tempProduct).then(res => {
                     console.log(this.tempProduct);
                     this.$emit('update');
-                    this.tempProduct = {imageUrl: ['']};
                 }).catch(err => {
                     console.log(err);
                 })

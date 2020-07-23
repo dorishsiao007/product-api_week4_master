@@ -21,6 +21,7 @@ new Vue({
     },
     methods: {
         getProducts(page = 1) {
+            this.tempProduct = {imageUrl: ['']};
             const getProductsApiPath = `${this.api.path}/api/${this.api.uuid}/admin/ec/products?page=${page}`
             axios.get(getProductsApiPath).then(res => {
                 this.productData = res.data.data;

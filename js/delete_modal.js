@@ -28,7 +28,6 @@ export default {
                 
             axios.delete(deleteProductApiPath).then(res => {
                 this.$emit('delete');
-                this.tempProduct = {imageUrl: ['']};
             }).catch(err => {
                 console.log(err);
             })

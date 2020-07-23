@@ -7,7 +7,7 @@ export default {
             <span aria-hidden="true">&laquo;</span>
             </a>
         </li>
-        <li v-for="i in pagination.total_pages" :key="i" class="page-item"><a @click.prevent="paginationUpdate(i)" class="page-link" href="#">{{ i }}</a></li>
+        <li v-for="i in pagination.total_pages" :key="i" class="page-item" :class="{active: pagination.current_page === i}"><a @click.prevent="paginationUpdate(i)" class="page-link" href="#">{{ i }}</a></li>
         <li class="page-item">
             <a class="page-link" href="#" aria-label="Next">
             <span aria-hidden="true">&raquo;</span>
